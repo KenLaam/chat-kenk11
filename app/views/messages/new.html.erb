@@ -1,1 +1,7 @@
-<%= render 'form' %>
+<%= form_for [@recipient, Message.new] do |f| %>
+    <div class="form-group">
+      <%= f.label :body %>
+      <%= f.text_area :body, class: 'form-control' %>
+    </div>
+    <%= f.submit 'Send Message', class: 'btn btn-success-outline' %>
+<% end %>

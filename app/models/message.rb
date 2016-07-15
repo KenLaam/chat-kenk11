@@ -4,7 +4,7 @@ class Message < ApplicationRecord
   scope :unread, -> { where(read_at: nil) }
 
   def mark_as_read!
-    message.read_at = Time.now
-    message.save!
+    self.read_at = Time.now
+    self.save!
   end
 end
