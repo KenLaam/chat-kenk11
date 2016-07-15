@@ -9,7 +9,7 @@ class UsersController < ApplicationController
       flash[:success] = 'Register successful!'
       redirect_to root_path
     else
-      flash.now[:error] = "Error: #{@user.errors.full_messages.to_sentence}"
+      flash[:error] = "Error: #{@user.errors.full_messages.to_sentence}"
       render 'new'
     end
   end

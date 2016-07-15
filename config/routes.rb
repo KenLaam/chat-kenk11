@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :sessions, only: [:new, :create]
   resources :users
-
+  resources :messages
 
   get 'register' => 'users#new'
   get 'login' => 'sessions#new'

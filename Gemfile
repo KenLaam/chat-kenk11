@@ -54,5 +54,5 @@ gem 'rails-assets-tether', '>= 1.1.0'
 
 gem 'rails_12factor', group: 'production'
 
-gem 'simple_form'
-
+gem 'omniauth'
+gem 'omniauth-facebook'
