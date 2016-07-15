@@ -9,7 +9,30 @@
 </head>
 
 <body>
+<nav class="navbar navbar-light bg-faded">
+  <%= link_to 'Chat KenK11', root_path, class: 'navbar-brand' %>
+  <ul class="nav navbar-nav">
+    <% unless signed_in? %>
+        <li class="nav-item <%= 'active' if current_page? register_path %>">
+          <%= link_to 'Register', register_path, class: 'nav-link' %>
+        </li>
+        <li class="nav-item <%= 'active' if current_page? login_path %>">
+          <%= link_to 'Login', login_path, class: 'nav-link' %>
+        </li>
+        </ul>
+    <% else %>
+        <div class="form-inline pull-xs-right">
+          <li class="nav-item active">
+            <div class="nav-link"> Hello <%= current_user.name %>,</div>
+          </li>
+          <li class="nav-item %>">
+            <%= link_to 'Log out', logout_path, method: 'delete', class: 'nav-link' %>
+          </li>
+        </div>
+    <% end %>
+    </nav>
 <div class="container">
+
   <%= yield %>
 </div>
 </body>
