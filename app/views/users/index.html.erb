@@ -1,3 +1,20 @@
+Received message
+<% current_user.received_messages.each do |message| %>
+    <div>
+      From <%= message.sender.name %>: <%= message.body %>
+    </div>
+<% end %>
+
+Sent message
+<% current_user.sent_messages.each do |message| %>
+    <div>
+      From <%= message.sender.name %>: <%= message.body %>
+    </div>
+<% end %>
+
+
+
+
 <table class="table">
   <thead>
   <tr>

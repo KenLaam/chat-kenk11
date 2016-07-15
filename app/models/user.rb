@@ -4,11 +4,11 @@ class User < ApplicationRecord
   validates :email, :name, :password, presence: true
 
   def received_messages
-    where(recipient: self)
+    Message.where(recipient: self)
   end
 
   def sent_messages
-    where(sender: self)
+    Message.where(sender: self)
   end
 
   def unread_messages
