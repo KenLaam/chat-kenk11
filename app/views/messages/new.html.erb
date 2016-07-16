@@ -2,7 +2,7 @@
     <div class="form-group">
       <div>
         <%= f.label :recipient_id %>
-        <%= f.select :recipient_id, another_user.map { |recipient| [recipient.name, recipient.id] } %>
+        <%= f.select :recipient_id, current_user.friends.map { |recipient| [recipient.name, recipient.id] } %>
       </div>
       <div>
         <%= f.label :body %>
