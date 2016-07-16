@@ -5,6 +5,9 @@ class PagesController < ApplicationController
   end
 
   def friends
+  end
 
+  def sent
+    @messages = current_user.sent_messages.order(recipient_id: :asc)
   end
 end

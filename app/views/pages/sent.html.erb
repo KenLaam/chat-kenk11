@@ -1,0 +1,12 @@
+<h1>Sent messages</h1>
+<% unless @messages.count > 0 %>
+    <div>
+      You didn't send any messages.
+    </div>
+<% else %>
+    <% @messages.each do |message| %>
+        <div>
+          To <%= message.recipient.name %>: <%= message.body %>
+        </div>
+    <% end %>
+<% end %>

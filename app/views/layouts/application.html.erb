@@ -27,8 +27,8 @@
         <li class="nav-item <%= 'active' if current_page? new_message_path %>">
           <%= link_to 'New message', new_message_path, class: 'nav-link' %>
         </li>
-        <li class="nav-item <%= 'active' if current_page? messages_path %>">
-          <%= link_to 'Sent Message', messages_path, class: 'nav-link' %>
+        <li class="nav-item <%= 'active' if current_page? sent_path %>">
+          <%= link_to 'Sent Messages', sent_path, class: 'nav-link' %>
         </li>
 
         <div class="form-inline pull-xs-right">

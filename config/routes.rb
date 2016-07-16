@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :sessions, only: [:new, :create]
   resources :messages
+
   resources :friendships, only: [:create, :destroy]
   resources :users do
     resources :messages
@@ -10,6 +11,8 @@ Rails.application.routes.draw do
   get 'register' => 'users#new'
   get 'login' => 'sessions#new'
   delete 'logout' => 'sessions#destroy'
+
+  get 'sent' => 'pages#sent'
 
   get 'friends' => 'pages#friends'
 
