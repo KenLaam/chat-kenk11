@@ -7,4 +7,6 @@ class Message < ApplicationRecord
     self.read_at = Time.now
     self.save!
   end
+
+
 end

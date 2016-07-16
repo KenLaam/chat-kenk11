@@ -1,0 +1,13 @@
+<% if current_user.unread_messages.count > 0 %>
+    You have <%= current_user.unread_messages.count %> new messages
+    <% current_user.unread_messages.order('created_at desc').each do |unread_message| %>
+        <div>
+          From <%= unread_message.sender.name %>: <strong><%= unread_message.body %></strong>
+          at <%= time_ago_in_words unread_message.created_at %>
+        </div>
+    <% end %>
+<% else %>
+    <div>
+      You don't have new messages.
+    </div>
+<% end %>

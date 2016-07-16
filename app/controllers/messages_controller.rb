@@ -1,12 +1,16 @@
 class MessagesController < ApplicationController
+  def index
+  end
+
   def new
-    @recipient = User.find params[:user_id]
+    if params[:user_id]
+      @recipient = User.find params[:user_id]
+    end
   end
 
   def create
     @message = Message.new(message_params)
     @message.sender = current_user
-    @message.recipient = User.find params[:user_id]
     if @message.save
       flash[:success] = 'Message sent!'
       redirect_to users_path

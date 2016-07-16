@@ -1,12 +1,16 @@
 Rails.application.routes.draw do
   resources :sessions, only: [:new, :create]
+  resources :messages
   resources :users do
     resources :messages
   end
 
+
   get 'register' => 'users#new'
   get 'login' => 'sessions#new'
   delete 'logout' => 'sessions#destroy'
+
+  get 'friends' => 'pages#friends'
 
   root 'pages#index'
 

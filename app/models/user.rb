@@ -1,4 +1,6 @@
 class User < ApplicationRecord
+  has_many :friendships
+  has_many :friends, through: :friendships
   has_secure_password
   validates :email, format: {with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, on: :create}, uniqueness: true
   validates :email, :name, :password, presence: true
@@ -16,7 +18,7 @@ class User < ApplicationRecord
   end
 
   # and you can "chain" methods to load n newest received messages
-  def latest_received_messages(n)
-    received_messages.order(created_at: :desc).limit(n)
+  def latest_received_messages
+    received_messages.order(created_at: :desc)
   end
 end

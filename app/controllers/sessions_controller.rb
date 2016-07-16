@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  skip_before_action :require_login, only: [:new, :create]
+
   def new
 
   end
@@ -7,7 +9,7 @@ class SessionsController < ApplicationController
     if @user = User.find_by(email: params[:email]) and @user.authenticate(params[:password])
       session[:user_id] = @user.id
       flash[:success] = 'Signed in'
-      redirect_to users_path
+      redirect_to root_path
     else
       flash.now[:error] = 'Invalid username or password'
       render 'new'

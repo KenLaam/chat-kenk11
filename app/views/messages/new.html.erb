@@ -1,8 +1,13 @@
-Send message to: <%= @recipient.name %> with email <%= @recipient.email %>
 <%= form_for [@recipient, Message.new] do |f| %>
     <div class="form-group">
-      <%= f.label :body %>
-      <%= f.text_area :body, class: 'form-control' %>
+      <div>
+        <%= f.label :recipient_id %>
+        <%= f.select :recipient_id, another_user.map { |recipient| [recipient.name, recipient.id] } %>
+      </div>
+      <div>
+        <%= f.label :body %>
+        <%= f.text_area :body, class: 'form-control' %>
+      </div>
     </div>
     <%= f.submit 'Send Message', class: 'btn btn-success-outline' %>
 <% end %>

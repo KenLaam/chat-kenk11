@@ -1,7 +1,10 @@
 class PagesController < ApplicationController
+  skip_before_action :require_login, only: [:index]
+
   def index
-    if signed_in?
-      redirect_to users_path
-    end
+  end
+
+  def friends
+
   end
 end
