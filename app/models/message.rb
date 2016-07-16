@@ -8,5 +8,7 @@ class Message < ApplicationRecord
     self.save!
   end
 
-
+  def unread?
+    self.read_at
+  end
 end

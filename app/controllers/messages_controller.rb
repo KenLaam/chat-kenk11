@@ -2,6 +2,21 @@ class MessagesController < ApplicationController
   def index
   end
 
+  def received
+
+  end
+
+  def sent
+
+  end
+
+  def show
+    @message = Message.find params[:id]
+    if @message.unread?
+      @message.mark_as_read!
+    end
+  end
+
   def new
     if params[:user_id]
       @recipient = User.find params[:user_id]

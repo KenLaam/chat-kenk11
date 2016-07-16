@@ -1,3 +1,12 @@
 <% if signed_in? %>
-    <%= render 'messages/unread' %>
+    <% if current_user.received_messages.unread %>
+        <% current_user.received_messages.unread.each do |message| %>
+            <%= link_to "Message from #{message.sender.name}", message_path(message) %>
+        <% end %>
+        <%= render 'messages/unread' %>
+    <% else %>
+        <div>
+          No new messages!
+        </div>
+    <% end %>
 <% end %>

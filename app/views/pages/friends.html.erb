@@ -1,3 +1,30 @@
+<h1>Your friends</h1>
+<% if current_user.friends %>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th></th>
+      </tr>
+      </thead>
+      <tbody>
+      <% current_user.friends.each do |friend| %>
+          <tr>
+            <th scope="row"><%= friend.name %></th>
+            <td><%= friend.email %></td>
+            <td>
+              <%= link_to 'Send message', new_user_message_path(user_id: friend.id), class: 'btn btn-info-outline' %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+<% else %>
+    You don't have any friends?
+<% end %>
+<h1>Another</h1>
+
 <table class="table">
   <thead>
   <tr>
@@ -12,8 +39,9 @@
         <th scope="row"><%= user.name %></th>
         <td><%= user.email %></td>
         <td>
-          <%= link_to 'Send message', new_user_message_path(user_id: user.id), class: 'btn btn-info-outline' %>
-          <%= link_to 'Add friend', friendships_path(friend_id: user), method: 'post', class: 'btn btn-info-outline' %>
+          <% if user.friends.exists?(current_user) %>
+              <%= link_to 'Add friend', friendships_path(friend_id: user), method: 'post', class: 'btn btn-info-outline' %>
+          <% end %>
         </td>
       </tr>
   <% end %>
