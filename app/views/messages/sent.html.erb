@@ -1,1 +1,19 @@
-sent
+<h1>Sent messages</h1>
+<table class="table">
+  <thead>
+  <tr>
+    <th>From</th>
+    <th>Content</th>
+    <th>Time</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @messages.each do |message| %>
+      <tr>
+        <th scope="row"><%= message.sender.name %></th>
+        <td><%= message.body %></td>
+        <td><%= time_ago_in_words message.created_at %> ago</td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>

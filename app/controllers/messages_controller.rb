@@ -3,11 +3,11 @@ class MessagesController < ApplicationController
   end
 
   def received
-
+    @messages = current_user.received_messages
   end
 
   def sent
-
+    @messages = current_user.sent_messages
   end
 
   def show

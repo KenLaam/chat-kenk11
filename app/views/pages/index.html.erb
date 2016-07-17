@@ -1,9 +1,9 @@
 <% if signed_in? %>
     <% if current_user.received_messages.unread %>
+        <div>You have <%= current_user.received_messages.unread.count %> new messages.</div>
         <% current_user.received_messages.unread.each do |message| %>
-            <%= link_to "Message from #{message.sender.name}", message_path(message) %>
+            <div><%= link_to "New message from #{message.sender.name} #{time_ago_in_words message.created_at} ago", message_path(message) %></div>
         <% end %>
-        <%= render 'messages/unread' %>
     <% else %>
         <div>
           No new messages!
