@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   get 'register' => 'users#new'
   get 'login' => 'sessions#new'
+  get 'auth/:provider/callback' => 'sessions#callback'
   delete 'logout' => 'sessions#destroy'
 
   get 'sent' => 'pages#sent'

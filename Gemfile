@@ -55,4 +55,4 @@ gem 'rails-assets-tether', '>= 1.1.0'
 gem 'rails_12factor', group: 'production'
 
 gem 'omniauth'
-gem 'omniauth-facebook'
+gem 'omniauth-facebook', '~> 3.0.0'

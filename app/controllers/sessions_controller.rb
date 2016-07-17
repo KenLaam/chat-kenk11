@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  skip_before_action :require_login, only: [:new, :create]
+  skip_before_action :require_login, only: [:new, :create, :callback]
 
   def new
 
@@ -20,5 +20,16 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     flash[:success] = 'Logged out.'
     redirect_to root_path
+  end
+
+  def callback
+    if user = User.from_facebook(env["omniauth.auth"]) # log in user here else # don't log user in end
+      session[:user_id] = user.id
+      redirect_to root_path
+    else
+      flash[:error] = 'Error while logging in Facebook!'
+      redirect_to root_path
+    end
+
   end
 end
