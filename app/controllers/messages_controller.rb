@@ -26,7 +26,7 @@ class MessagesController < ApplicationController
     @message.sender = current_user
     if @message.save
       flash[:success] = 'Message sent!'
-      redirect_to users_path
+      redirect_to root_path
     else
       flash[:error] = "Error: #{@message.errors.full_messages.to_sentence}"
       render 'new'
