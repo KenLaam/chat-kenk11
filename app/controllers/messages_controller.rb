@@ -12,9 +12,7 @@ class MessagesController < ApplicationController
 
   def show
     @message = Message.find params[:id]
-    if @message.unread?
-      @message.mark_as_read!
-    end
+    @message.mark_as_read!
   end
 
   def new

@@ -13,6 +13,7 @@ class UsersController < ApplicationController
     @user = User.new user_params
     if @user.save
       flash[:success] = 'Register successful!'
+      session[:user_id] = @user.id
       redirect_to root_path
     else
       flash[:error] = "Error: #{@user.errors.full_messages.to_sentence}"

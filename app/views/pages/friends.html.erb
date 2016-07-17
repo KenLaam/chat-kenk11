@@ -39,9 +39,7 @@
         <th scope="row"><%= user.name %></th>
         <td><%= user.email %></td>
         <td>
-          <% if user.friends.exists?(current_user) %>
-              <%= link_to 'Add friend', friendships_path(friend_id: user), method: 'post', class: 'btn btn-info-outline' %>
-          <% end %>
+          <%= link_to 'Add friend', friendships_path(friend_id: user), method: 'post', class: 'btn btn-info-outline' %>
         </td>
       </tr>
   <% end %>
