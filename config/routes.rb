@@ -20,7 +20,7 @@ Rails.application.routes.draw do
 
   get 'sent' => 'pages#sent'
 
-  get 'friends' => 'pages#friends'
+  get 'friends' => 'friendships#index'
 
   root 'pages#index'
 

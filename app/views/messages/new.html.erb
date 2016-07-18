@@ -3,9 +3,9 @@
       <div>
         <%= f.label :recipient_id %>
         <% if @recipient %>
-            <%= f.select :recipient_id, current_user.friends.map { |recipient| [recipient.name, recipient.id] }, selected: @recipient.id, class: 'form-control' %>
+            <%= f.select :recipient_id, current_user.friends.map { |recipient| [recipient.name, recipient.id, {email: recipient.email}] }, selected: @recipient.id, class: 'form-control' %>
         <% else %>
-            <%= f.select :recipient_id, current_user.friends.map { |recipient| [recipient.name, recipient.id] }, class: 'form-control' %>
+            <%= f.select :recipient_id, current_user.friends.map { |recipient| [recipient.name, recipient.id, {email: recipient.email}] }, class: 'form-control' %>
         <% end %>
       </div>
       <div>

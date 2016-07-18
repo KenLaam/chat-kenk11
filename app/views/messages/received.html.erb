@@ -4,6 +4,7 @@
       <thead>
       <tr>
         <th>From</th>
+        <th>Email</th>
         <th>Content</th>
         <th>Time</th>
       </tr>
@@ -12,6 +13,7 @@
       <% @messages.each do |message| %>
           <tr>
             <th scope="row"><%= message.sender.name %></th>
+            <td><%= message.sender.email %></td>
             <% unless message.unread? %>
                 <td><%= link_to message.body, message %></td>
             <% else %>
