@@ -15,7 +15,7 @@
             <td><%= friend.email %></td>
             <td>
               <%= link_to 'Send message', new_user_message_path(user_id: friend.id), class: 'btn btn-info-outline' %>
-              <%= link_to 'Delete', friendship_path(current_user,friend_id: friend.id), method: 'delete', class: 'btn btn-danger-outline' %>
+              <%= link_to 'Delete', friendship_path(current_user, friend_id: friend.id), method: 'delete', class: 'btn btn-danger-outline' %>
             </td>
           </tr>
       <% end %>

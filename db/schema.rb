@@ -16,27 +16,27 @@ ActiveRecord::Schema.define(version: 20160716042533) do
   enable_extension "plpgsql"
 
   create_table "friendships", force: :cascade do |t|
-    t.integer  "user_id"
-    t.integer  "friend_id"
+    t.integer "user_id"
+    t.integer "friend_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "messages", force: :cascade do |t|
-    t.integer  "sender_id"
-    t.integer  "recipient_id"
-    t.string   "body"
+    t.integer "sender_id"
+    t.integer "recipient_id"
+    t.string "body"
     t.datetime "read_at"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "password_digest"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.string "name"
+    t.string "email"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", using: :btree
   end
 

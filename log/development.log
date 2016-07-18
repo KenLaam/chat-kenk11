@@ -16388,3 +16388,110 @@ Processing by FriendshipsController#index as HTML
 Completed 200 OK in 137ms (Views: 129.6ms | ActiveRecord: 4.1ms)
 
 
+Started GET "/" for 127.0.0.1 at 2016-07-18 23:24:49 +0700
+Processing by PagesController#index as HTML
+  Rendering pages/index.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "messages" WHERE "messages"."recipient_id" = 2 AND "messages"."read_at" IS NULL[0m
+  [1m[36mMessage Load (0.3ms)[0m  [1m[34mSELECT "messages".* FROM "messages" WHERE "messages"."recipient_id" = 2 AND "messages"."read_at" IS NULL[0m
+  Rendered pages/index.html.erb within layouts/application (19.1ms)
+Completed 200 OK in 109ms (Views: 104.1ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/friends" for 127.0.0.1 at 2016-07-18 23:24:51 +0700
+Processing by FriendshipsController#index as HTML
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering friendships/index.html.erb within layouts/application
+  [1m[35m (1.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1[0m  [["user_id", 2]]
+  [1m[36mUser Load (5.9ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE ("users"."id" != 2)[0m
+  [1m[36mFriendship Exists (3.8ms)[0m  [1m[34mSELECT  1 AS one FROM "friendships" WHERE "friendships"."user_id" = $1 AND "friendships"."friend_id" = $2 LIMIT $3[0m  [["user_id", 2], ["friend_id", 6], ["LIMIT", 1]]
+  [1m[36mFriendship Exists (3.7ms)[0m  [1m[34mSELECT  1 AS one FROM "friendships" WHERE "friendships"."user_id" = $1 AND "friendships"."friend_id" = $2 LIMIT $3[0m  [["user_id", 2], ["friend_id", 7], ["LIMIT", 1]]
+  [1m[36mFriendship Exists (1.3ms)[0m  [1m[34mSELECT  1 AS one FROM "friendships" WHERE "friendships"."user_id" = $1 AND "friendships"."friend_id" = $2 LIMIT $3[0m  [["user_id", 2], ["friend_id", 8], ["LIMIT", 1]]
+  [1m[36mFriendship Exists (4.3ms)[0m  [1m[34mSELECT  1 AS one FROM "friendships" WHERE "friendships"."user_id" = $1 AND "friendships"."friend_id" = $2 LIMIT $3[0m  [["user_id", 2], ["friend_id", 9], ["LIMIT", 1]]
+  Rendered friendships/index.html.erb within layouts/application (80.6ms)
+Completed 200 OK in 199ms (Views: 173.9ms | ActiveRecord: 22.7ms)
+
+
+Started POST "/friendships?friend_id=6" for 127.0.0.1 at 2016-07-18 23:24:53 +0700
+Processing by FriendshipsController#create as HTML
+  Parameters: {"authenticity_token"=>"08NYObe5JM6n/hDi4K+iDwF0H7JJZW6TkxYqDe2SsD/2GySYdvgxMADkzCaR84lDP25BenetE1yJPra+B9mt3w==", "friend_id"=>"6"}
+  [1m[36mUser Load (2.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[35m (3.4ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (1.9ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 6], ["LIMIT", 1]]
+  [1m[35mSQL (2.7ms)[0m  [1m[32mINSERT INTO "friendships" ("user_id", "friend_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["user_id", 2], ["friend_id", 6], ["created_at", 2016-07-18 16:24:53 UTC], ["updated_at", 2016-07-18 16:24:53 UTC]]
+  [1m[35m (1.2ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/friends
+Completed 302 Found in 33ms (ActiveRecord: 12.0ms)
+
+
+Started GET "/friends" for 127.0.0.1 at 2016-07-18 23:24:53 +0700
+Processing by FriendshipsController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering friendships/index.html.erb within layouts/application
+  [1m[35m (7.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1[0m  [["user_id", 2]]
+  [1m[36mUser Load (2.8ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1[0m  [["user_id", 2]]
+  Rendered friendships/index.html.erb within layouts/application (19.1ms)
+Completed 500 Internal Server Error in 36ms (ActiveRecord: 10.4ms)
+
+
+  
+ActionView::Template::Error (No route matches {:action=>"show", :controller=>"friendships", :friend_id=>6} missing required keys: [:id]):
+    15:             <td><%= friend.email %></td>
+    16:             <td>
+    17:               <%= link_to 'Send message', new_user_message_path(user_id: friend.id), class: 'btn btn-info-outline' %>
+    18:               <%= link_to 'Delete', friendship_path(friend_id: friend.id), method: 'delete', class: 'btn btn-danger-outline' %>
+    19:             </td>
+    20:           </tr>
+    21:       <% end %>
+  
+app/views/friendships/index.html.erb:18:in `block in _app_views_friendships_index_html_erb__321093698__644655208'
+app/views/friendships/index.html.erb:12:in `_app_views_friendships_index_html_erb__321093698__644655208'
+  Rendering /home/ken/.rvm/gems/ruby-2.3.1/gems/actionpack-5.0.0/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout
+  Rendering /home/ken/.rvm/gems/ruby-2.3.1/gems/actionpack-5.0.0/lib/action_dispatch/middleware/templates/rescues/_source.html.erb
+  Rendered /home/ken/.rvm/gems/ruby-2.3.1/gems/actionpack-5.0.0/lib/action_dispatch/middleware/templates/rescues/_source.html.erb (21.2ms)
+  Rendering /home/ken/.rvm/gems/ruby-2.3.1/gems/actionpack-5.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb
+  Rendered /home/ken/.rvm/gems/ruby-2.3.1/gems/actionpack-5.0.0/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (7.0ms)
+  Rendering /home/ken/.rvm/gems/ruby-2.3.1/gems/actionpack-5.0.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb
+  Rendered /home/ken/.rvm/gems/ruby-2.3.1/gems/actionpack-5.0.0/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.4ms)
+  Rendered /home/ken/.rvm/gems/ruby-2.3.1/gems/actionpack-5.0.0/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (71.0ms)
+Started GET "/friends" for 127.0.0.1 at 2016-07-18 23:25:00 +0700
+Processing by FriendshipsController#index as HTML
+  [1m[36mUser Load (3.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering friendships/index.html.erb within layouts/application
+  [1m[35m (6.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1[0m  [["user_id", 2]]
+  [1m[36mUser Load (2.2ms)[0m  [1m[34mSELECT "users".* FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1[0m  [["user_id", 2]]
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE ("users"."id" != 2)[0m
+  [1m[36mFriendship Exists (4.0ms)[0m  [1m[34mSELECT  1 AS one FROM "friendships" WHERE "friendships"."user_id" = $1 AND "friendships"."friend_id" = $2 LIMIT $3[0m  [["user_id", 2], ["friend_id", 6], ["LIMIT", 1]]
+  [1m[36mFriendship Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "friendships" WHERE "friendships"."user_id" = $1 AND "friendships"."friend_id" = $2 LIMIT $3[0m  [["user_id", 2], ["friend_id", 7], ["LIMIT", 1]]
+  [1m[36mFriendship Exists (2.8ms)[0m  [1m[34mSELECT  1 AS one FROM "friendships" WHERE "friendships"."user_id" = $1 AND "friendships"."friend_id" = $2 LIMIT $3[0m  [["user_id", 2], ["friend_id", 8], ["LIMIT", 1]]
+  [1m[36mFriendship Exists (1.8ms)[0m  [1m[34mSELECT  1 AS one FROM "friendships" WHERE "friendships"."user_id" = $1 AND "friendships"."friend_id" = $2 LIMIT $3[0m  [["user_id", 2], ["friend_id", 9], ["LIMIT", 1]]
+  Rendered friendships/index.html.erb within layouts/application (43.4ms)
+Completed 200 OK in 157ms (Views: 131.4ms | ActiveRecord: 22.7ms)
+
+
+Started DELETE "/friendships/2?friend_id=6" for 127.0.0.1 at 2016-07-18 23:25:05 +0700
+Processing by FriendshipsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"4i9602rK9ivXOTBULCXsw1v0J29M3wD/OwuY5WwjM27H9wZyq4vj1XAj7JBdecePZe55p3IXfTAhIwRWhmgujg==", "friend_id"=>"6", "id"=>"2"}
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  [1m[36mFriendship Load (0.4ms)[0m  [1m[34mSELECT  "friendships".* FROM "friendships" WHERE "friendships"."user_id" = $1 AND "friendships"."friend_id" = $2 ORDER BY "friendships"."id" ASC LIMIT $3[0m  [["user_id", 2], ["friend_id", 6], ["LIMIT", 1]]
+  [1m[35m (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[31mDELETE FROM "friendships" WHERE "friendships"."id" = $1[0m  [["id", 15]]
+  [1m[35m (1.6ms)[0m  [1m[35mCOMMIT[0m
+Redirected to http://localhost:3000/friends
+Completed 302 Found in 16ms (ActiveRecord: 4.7ms)
+
+
+Started GET "/friends" for 127.0.0.1 at 2016-07-18 23:25:05 +0700
+Processing by FriendshipsController#index as HTML
+  [1m[36mUser Load (2.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  Rendering friendships/index.html.erb within layouts/application
+  [1m[35m (3.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "users" INNER JOIN "friendships" ON "users"."id" = "friendships"."friend_id" WHERE "friendships"."user_id" = $1[0m  [["user_id", 2]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE ("users"."id" != 2)[0m
+  [1m[36mFriendship Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "friendships" WHERE "friendships"."user_id" = $1 AND "friendships"."friend_id" = $2 LIMIT $3[0m  [["user_id", 2], ["friend_id", 6], ["LIMIT", 1]]
+  [1m[36mFriendship Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "friendships" WHERE "friendships"."user_id" = $1 AND "friendships"."friend_id" = $2 LIMIT $3[0m  [["user_id", 2], ["friend_id", 7], ["LIMIT", 1]]
+  [1m[36mFriendship Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "friendships" WHERE "friendships"."user_id" = $1 AND "friendships"."friend_id" = $2 LIMIT $3[0m  [["user_id", 2], ["friend_id", 8], ["LIMIT", 1]]
+  [1m[36mFriendship Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "friendships" WHERE "friendships"."user_id" = $1 AND "friendships"."friend_id" = $2 LIMIT $3[0m  [["user_id", 2], ["friend_id", 9], ["LIMIT", 1]]
+  Rendered friendships/index.html.erb within layouts/application (13.1ms)
+Completed 200 OK in 88ms (Views: 75.8ms | ActiveRecord: 6.7ms)
+
+
